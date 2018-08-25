@@ -1,5 +1,5 @@
 require 'pry'
 require 'date'
 
-class Engima
+class Key
 end
