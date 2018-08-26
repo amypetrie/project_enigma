@@ -35,6 +35,7 @@ class KeyTest < Minitest::Test
     assert_equal 23, key.rotation_b
   end
 
+
   def test_rotation_c_adds_and_converts_to_integer
     key = Key.new("12345")
     assert_equal 34, key.rotation_c
