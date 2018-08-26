@@ -23,11 +23,24 @@ class KeyTest < Minitest::Test
     assert_equal ["1", "2", "3", "4", "5"], key.to_array
   end
 
-  # def test_rotation_a_adds_and_converts_to_integer
-  #   key = Key.new("12345")
-  #   assert_equal 12, key.rotation_a
-  # end
+  def test_rotation_a_adds_and_converts_to_integer
+    key = Key.new("12345")
+    assert_equal 12, key.rotation_a
+  end
 
+  def test_rotation_b_adds_and_converts_to_integer
+    key = Key.new("12345")
+    assert_equal 23, key.rotation_b
+  end
 
+  def test_rotation_c_adds_and_converts_to_integer
+    key = Key.new("12345")
+    assert_equal 34, key.rotation_c
+  end
+
+  def test_rotation_d_adds_and_converts_to_integer
+    key = Key.new("12345")
+    assert_equal 45, key.rotation_d
+  end
 
 end
