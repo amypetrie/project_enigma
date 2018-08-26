@@ -13,9 +13,11 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, key
   end
 
-  def test_key_has_key_numbers
+  def test_key_has_key_numbers_incl_random_generation
     key = Key.new("12345")
     assert_equal "12345", key.key_numbers
+    k = Key.new
+    assert_equal 5, k.key_numbers.length
   end
 
   def test_turns_string_into_array
