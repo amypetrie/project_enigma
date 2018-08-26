@@ -13,24 +13,30 @@ class OffsetTest < Minitest::Test
     assert_instance_of Offset, o
   end
 
-  def test_it_coverts_date_to_day
+  def test_it_coverts_todays_date_to_day_string
     o = Offset.new
     assert_equal "26", o.adjust_date_to_day
   end
 
-  def test_it_coverts_date_to_month
+  def test_it_coverts_todays_date_to_month_string
     o = Offset.new
     assert_equal "08", o.adjust_date_to_month
   end
 
-  def test_it_coverts_date_to_year
+  def test_it_coverts_todays_date_to_year_string
     o = Offset.new
     assert_equal "18", o.adjust_date_to_year
   end
 
-  def test_final_date_offset
+  def test_final_date_offset_when_using_todays_date
     o = Offset.new
     assert_equal 260818, o.final_date_offset
+  end
+
+  def test_final_date_offset_when_user_gives_date
+    o = Offset.new("230818")
+    x = o.date
+    assert_equal 230818, o.final_date_offset
   end
 
   def test_it_squares_date

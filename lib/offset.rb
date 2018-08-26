@@ -22,8 +22,12 @@ class Offset
   end
 
   def final_date_offset
-    final = adjust_date_to_day + adjust_date_to_month + adjust_date_to_year
-    final.to_i
+    if date.to_s.length > 6
+      final = adjust_date_to_day + adjust_date_to_month + adjust_date_to_year
+      final.to_i
+    else
+      @date.to_i
+    end
   end
 
   def squared_final_date_offset
