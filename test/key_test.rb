@@ -7,4 +7,27 @@ require './lib/key'
 require 'pry'
 
 class KeyTest < Minitest::Test
+
+  def test_key_exists
+    key = Key.new("12345")
+    assert_instance_of Key, key
+  end
+
+  def test_key_has_key_numbers
+    key = Key.new("12345")
+    assert_equal "12345", key.key_numbers
+  end
+
+  def test_turns_string_into_array
+    key = Key.new("12345")
+    assert_equal ["1", "2", "3", "4", "5"], key.to_array
+  end
+
+  # def test_rotation_a_adds_and_converts_to_integer
+  #   key = Key.new("12345")
+  #   assert_equal 12, key.rotation_a
+  # end
+
+
+
 end
