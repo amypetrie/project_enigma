@@ -25,10 +25,10 @@ class EnigmaTest < Minitest::Test
   #   assert_equal "vy k", e.encrypt(message, "12345")
   # end
 
-  def test_encryption_works_on_eight_letter_message
+  def test_encryption_works_on_four_plus_letter_message
     e = Enigma.new
     message = "sup world"
-    assert_equal "", e.encrypt(message, "12345")
+    assert_equal "afmhe.ovy", e.encrypt(message, "12345")
   end
 
   def test_final_rotation_a
