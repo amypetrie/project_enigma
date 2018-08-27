@@ -38,6 +38,12 @@ class OffsetTest < Minitest::Test
     assert_equal 230818, o.final_date_offset
   end
 
+  def test_final_date_offset_when_user_gives_date
+    o = Offset.new("230818")
+    x = o.date
+    assert_equal 230818, o.final_date_offset
+  end
+
   def test_it_squares_date
     o = Offset.new
     assert_equal 73342389124, o.squared_final_date_offset
