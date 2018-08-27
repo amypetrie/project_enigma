@@ -19,16 +19,16 @@ class EnigmaTest < Minitest::Test
     assert_equal ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " ", ",", "."], e.character_map
   end
 
-  def test_encryption_works_on_four_letter_message
-    e = Enigma.new
-    message = "abcd"
-    assert_equal "vy k", e.encrypt(message, "12345")
-  end
+  # def test_encryption_works_on_four_letter_message
+  #   e = Enigma.new
+  #   message = "abcd"
+  #   assert_equal "vy k", e.encrypt(message, "12345")
+  # end
 
   def test_encryption_works_on_eight_letter_message
     e = Enigma.new
-    message = "adcdabcd"
-    assert_equal "vy kvy k", e.encrypt(message, "12345")
+    message = "sup world"
+    assert_equal "", e.encrypt(message, "12345")
   end
 
   def test_final_rotation_a
