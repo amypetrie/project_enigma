@@ -35,7 +35,6 @@ class OffsetTest < Minitest::Test
 
   def test_final_date_offset_when_user_gives_date
     o = Offset.new("230818")
-    x = o.date
     assert_equal 230818, o.final_date_offset
   end
 

@@ -22,12 +22,6 @@ class Enigma
     output.join("")
   end
 
-  def final_rotation_d(key, offset)
-    # final_d =
-    key.rotation_d + offset.offset_rotation_d  % 39
-    # final_d
-  end
-
   def final_rotation_a(key, offset)
     final_a = key.rotation_a + offset.offset_rotation_a
     final_a % 39
@@ -41,5 +35,10 @@ class Enigma
   def final_rotation_c(key, offset)
     final_c = key.rotation_c + offset.offset_rotation_c
     final_c % 39
+  end
+
+  def final_rotation_d(key, offset)
+    final_d = key.rotation_d + offset.offset_rotation_d
+    final_d % 39
   end
 end
