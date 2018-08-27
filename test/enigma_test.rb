@@ -25,6 +25,12 @@ class EnigmaTest < Minitest::Test
     assert_equal "vy k", e.encrypt(message, "12345")
   end
 
+  def test_encryption_works_on_eight_letter_message
+    e = Enigma.new
+    message = "adcdabcd"
+    assert_equal "vy kvy k", e.encrypt(message, "12345")
+  end
+
   def test_final_rotation_a
     e = Enigma.new
     o = Offset.new

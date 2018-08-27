@@ -14,10 +14,10 @@ class KeyTest < Minitest::Test
   end
 
   def test_key_has_key_numbers_incl_random_generation
-    key = Key.new("12345")
-    assert_equal "12345", key.key_numbers
-    k = Key.new
-    assert_equal 5, k.key_numbers.length
+    key_1 = Key.new("12345")
+    assert_equal "12345", key_1.key_numbers
+    key_2 = Key.new
+    assert_equal 5, key_2.key_numbers.length
   end
 
   def test_rotation_a_adds_and_converts_to_integer

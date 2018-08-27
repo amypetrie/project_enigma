@@ -10,15 +10,15 @@ class Offset
   end
 
   def adjust_date_to_day
-    day = @date.to_s[-2..-1]
+    @date.to_s[-2..-1]
   end
 
   def adjust_date_to_month
-    month = @date.to_s[5..6]
+    @date.to_s[5..6]
   end
 
   def adjust_date_to_year
-    year = @date.to_s[2..3]
+    @date.to_s[2..3]
   end
 
   def final_date_offset

@@ -15,7 +15,7 @@ class OffsetTest < Minitest::Test
 
   def test_it_coverts_todays_date_to_day_string
     o = Offset.new
-    assert_equal "26", o.adjust_date_to_day
+    assert_equal "27", o.adjust_date_to_day
   end
 
   def test_it_coverts_todays_date_to_month_string
@@ -30,7 +30,12 @@ class OffsetTest < Minitest::Test
 
   def test_final_date_offset_when_using_todays_date
     o = Offset.new
-    assert_equal 260818, o.final_date_offset
+    assert_equal 270818, o.final_date_offset
+  end
+
+  def test_final_date_offset_when_user_gives_date
+    o = Offset.new("230818")
+    assert_equal 230818, o.final_date_offset
   end
 
   def test_final_date_offset_when_user_gives_date
@@ -41,7 +46,7 @@ class OffsetTest < Minitest::Test
 
   def test_it_squares_date
     o = Offset.new
-    assert_equal 68026029124, o.squared_final_date_offset
+    assert_equal 73342389124, o.squared_final_date_offset
   end
 
   def test_offset_rotation_a
