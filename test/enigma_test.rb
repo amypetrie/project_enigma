@@ -30,7 +30,7 @@ class EnigmaTest < Minitest::Test
     encrypted = "afmhe.ovy"
     assert_equal "sup world", e.decrypt(encrypted, "12345")
   end
-  
+
   def test_final_rotation_a
     e = Enigma.new
     o = Offset.new

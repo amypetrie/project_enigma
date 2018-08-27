@@ -6,7 +6,7 @@ class Key
   attr_reader :key_numbers
 
   def initialize(key_numbers = rand(10_000..99_999).to_s)
-  @key_numbers = key_numbers
+  @key_numbers = key_numbers.to_s
   end
 
   def rotation_a
