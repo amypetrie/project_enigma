@@ -14,14 +14,13 @@ incoming_text = reader_file.read
 reader_file.close
 
 e = Enigma.new
-k = Key.new
+k = "12345"
 d = Date.today
 o = Offset.new(d)
 
 encrypted_text = e.encrypt(incoming_text.strip, k)
-binding.pry
 writer_file = File.open(ARGV[1], "w")
 writer_file.write(encrypted_text)
 writer_file.close
 
-p "Created #{ARGV[1]} with key #{k.key_numbers} and date #{o.final_date_offset}"
+p "Created #{ARGV[1]} with key #{k} and date #{o.final_date_offset}"
