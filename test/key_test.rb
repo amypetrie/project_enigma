@@ -20,11 +20,6 @@ class KeyTest < Minitest::Test
     assert_equal 5, k.key_numbers.length
   end
 
-  def test_turns_string_into_array
-    key = Key.new("12345")
-    assert_equal ["1", "2", "3", "4", "5"], key.to_array
-  end
-
   def test_rotation_a_adds_and_converts_to_integer
     key = Key.new("12345")
     assert_equal 12, key.rotation_a
@@ -34,6 +29,7 @@ class KeyTest < Minitest::Test
     key = Key.new("12345")
     assert_equal 23, key.rotation_b
   end
+
 
   def test_rotation_c_adds_and_converts_to_integer
     key = Key.new("12345")
