@@ -33,38 +33,24 @@ class EnigmaTest < Minitest::Test
     assert_equal "afmh", e.encrypt_four_letter_messages(msg.chars, Key.new(12345), Offset.new(Date.today))
   end
 
+  def test_decrypt_four_letter_msg
+    e = Enigma.new
+    msg = "afmh"
+    key = Key.new(12345)
+    assert_equal "sup ", e.decrypt_four_letter_messages(msg.chars, Key.new(12345), Offset.new(Date.today))
+  end
+
   def test_decryption_works
     e = Enigma.new
     encrypted = "afmhe.ovy"
     assert_equal "sup world", e.decrypt(encrypted, "12345")
   end
 
-  def test_final_rotation_a
+  def test_final_rotations
     e = Enigma.new
-    o = Offset.new
     k = Key.new("12345")
-    assert_equal 21, e.final_rotation_a(k, o)
-  end
-
-  def test_final_rotation_b
-    e = Enigma.new
     o = Offset.new
-    k = Key.new("12345")
-    assert_equal 24, e.final_rotation_b(k, o)
+    i = 10
+    assert_equal 31, e.final_rotations(k, o, i)[:final_a]
   end
-
-  def test_final_rotation_c
-    e = Enigma.new
-    o = Offset.new
-    k = Key.new("12345")
-    assert_equal 36, e.final_rotation_c(k, o)
-  end
-
-  def test_final_rotation_d
-    e = Enigma.new
-    o = Offset.new
-    k = Key.new("12345")
-    assert_equal 10, e.final_rotation_d(k, o)
-  end
-
 end
