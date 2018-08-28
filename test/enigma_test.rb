@@ -6,6 +6,7 @@ require './lib/enigma'
 require './lib/offset'
 require './lib/key'
 require 'pry'
+require 'date'
 
 class EnigmaTest < Minitest::Test
 
@@ -23,6 +24,13 @@ class EnigmaTest < Minitest::Test
     e = Enigma.new
     message = "sup world"
     assert_equal "afmhe.ovy", e.encrypt(message, "12345")
+  end
+
+  def test_encrypt_four_letter_msg
+    e = Enigma.new
+    msg = "sup "
+    key = Key.new(12345)
+    assert_equal "afmh", e.encrypt_four_letter_messages(msg.chars, Key.new(12345), Offset.new(Date.today))
   end
 
   def test_decryption_works
