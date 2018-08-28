@@ -67,4 +67,9 @@ class EnigmaTest < Minitest::Test
     assert_equal 10, e.final_rotation_d(k, o)
   end
 
+  def test_final_rotations
+    e = Enigma.new
+    k = Key.new("12345")
+    o = Offset.new
+    assert_equal , e.final_rotations(k, o)
 end
