@@ -85,6 +85,9 @@ class Enigma
      :final_d => ((char_index - (key.rotation_d + offset.offset_rotation_d)) % 39)}
   end
 
+def delete
+end
+
 end
 
 # CRACK
