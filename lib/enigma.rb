@@ -3,46 +3,51 @@ require 'date'
 
 class Enigma
 
-  attr_reader :character_map, :output, :decrypted
+  attr_reader :character_map
 
   def initialize
     @character_map = ("a".."z").to_a + ("0".."9").to_a + ([" ", ",", "."])
-    @encrypted = []
-    @decrypted = []
   end
 
   def encrypt(message, msg_key = Key.new, date = Date.today)
     offset = Offset.new(date)
     key = Key.new(msg_key)
     message = message.chars
+    encrypted = []
     loop do
-    break if message.length == 0
+      break if message.length == 0
       four_letter_msg = message.first(4)
-      @encrypted << four_letter_msg.map do |char|
-        index_integer = @character_map.rindex(char)
-        if four_letter_msg.rindex(char) == 0
-          char = @character_map[(index_integer.to_i + final_rotation_a(key, offset)) % 39]
-        elsif four_letter_msg.rindex(char) == 1
-          char = @character_map[(index_integer + final_rotation_b(key, offset)) % 39]
-        elsif four_letter_msg.rindex(char) == 2
-          char = @character_map[(index_integer + final_rotation_c(key, offset)) % 39]
-        else
-          char = @character_map[(index_integer + final_rotation_d(key, offset)) % 39]
-        end
-      end
+      encrypted << encrypt_four_letter_messages(four_letter_msg, key, offset)
       message = message.drop(4)
     end
-    @encrypted.join("")
+    encrypted.join("")
+  end
+
+  def encrypt_four_letter_messages(msg, key, offset)
+    mapped = msg.map.with_index do |char, index|
+    char_index = @character_map.rindex(char)
+      if index == 0
+        char = @character_map[(char_index + final_rotation_a(key, offset)) % 39]
+      elsif index == 1
+        char = @character_map[(char_index + final_rotation_b(key, offset)) % 39]
+      elsif index == 2
+        char = @character_map[(char_index + final_rotation_c(key, offset)) % 39]
+      else
+        char = @character_map[(char_index + final_rotation_d(key, offset)) % 39]
+      end
+    end
+    mapped.join("")
   end
 
   def decrypt(encrypted_msg, msg_key, date = Date.today)
     offset = Offset.new(date)
     key = Key.new(msg_key)
     message = encrypted_msg.chars
+    decrypted = []
     loop do
-    break if message.length == 0
+      break if message.length == 0
       four_letter_msg = message.first(4)
-      @decrypted << four_letter_msg.map do |char|
+      decrypted << four_letter_msg.map do |char|
         index_integer = @character_map.rindex(char)
         if four_letter_msg.rindex(char) == 0
           char = @character_map[(index_integer - final_rotation_a(key, offset)) % 39]
@@ -56,7 +61,7 @@ class Enigma
       end
       message = message.drop(4)
     end
-    @decrypted.join("")
+    decrypted.join("")
   end
 
   def crack(encrypted_msg, date = Date.today)
@@ -107,4 +112,5 @@ class Enigma
     final_d = key.rotation_d + offset.offset_rotation_d
     final_d % 39
   end
+
 end
