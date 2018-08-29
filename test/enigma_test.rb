@@ -29,14 +29,12 @@ class EnigmaTest < Minitest::Test
   def test_encrypt_four_letter_msg
     e = Enigma.new
     msg = "sup "
-    key = Key.new(12345)
     assert_equal "afmh", e.encrypt_four_letter_messages(msg.chars, Key.new(12345), Offset.new(Date.today))
   end
 
   def test_decrypt_four_letter_msg
     e = Enigma.new
     msg = "afmh"
-    key = Key.new(12345)
     assert_equal "sup ", e.decrypt_four_letter_messages(msg.chars, Key.new(12345), Offset.new(Date.today))
   end
 

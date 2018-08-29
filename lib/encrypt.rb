@@ -1,13 +1,7 @@
-#runner file, takes two command line arguments:
-#1. message.txt -> contains msg
-#2. encrypted.txt -> write encrypted msg here
-# => output is < Created 'encrypted.txt' with the key 82648 and date 240818 >
 require './lib/enigma'
 require './lib/key'
 require './lib/offset'
 require 'date'
-
-# ARGV == ["message.txt", "encrypted.txt"]
 
 reader_file = File.open(ARGV[0], "r")
 incoming_text = reader_file.read

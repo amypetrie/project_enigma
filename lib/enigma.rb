@@ -2,9 +2,7 @@ require 'pry'
 require 'date'
 
 class Enigma
-
-  attr_reader :character_map
-
+    attr_reader :character_map
   def initialize
     @character_map = ("a".."z").to_a + ("0".."9").to_a + ([" ", ",", "."])
   end
@@ -72,22 +70,22 @@ class Enigma
   end
 
   def final_rotations(key, offset, char_index)
-    final = {:final_a => ((char_index + key.rotation_a + offset.offset_rotation_a) % 39),
-     :final_b => ((char_index + key.rotation_b + offset.offset_rotation_b) % 39),
-     :final_c => ((char_index + key.rotation_c + offset.offset_rotation_c) % 39),
-     :final_d => ((char_index + key.rotation_d + offset.offset_rotation_d) % 39)}
+    {
+      :final_a => ((char_index + key.rotation_a + offset.offset_rotation_a) % 39),
+      :final_b => ((char_index + key.rotation_b + offset.offset_rotation_b) % 39),
+      :final_c => ((char_index + key.rotation_c + offset.offset_rotation_c) % 39),
+      :final_d => ((char_index + key.rotation_d + offset.offset_rotation_d) % 39)
+    }
   end
 
   def final_decrypted_rotations(key, offset, char_index)
-    final = {:final_a => ((char_index - (key.rotation_a + offset.offset_rotation_a)) % 39),
-     :final_b => ((char_index - (key.rotation_b + offset.offset_rotation_b)) % 39),
-     :final_c => ((char_index - (key.rotation_c + offset.offset_rotation_c)) % 39),
-     :final_d => ((char_index - (key.rotation_d + offset.offset_rotation_d)) % 39)}
+    {
+      :final_a => ((char_index - (key.rotation_a + offset.offset_rotation_a)) % 39),
+      :final_b => ((char_index - (key.rotation_b + offset.offset_rotation_b)) % 39),
+      :final_c => ((char_index - (key.rotation_c + offset.offset_rotation_c)) % 39),
+      :final_d => ((char_index - (key.rotation_d + offset.offset_rotation_d)) % 39)
+    }
   end
-
-def delete
-end
-
 end
 
 # CRACK
