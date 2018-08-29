@@ -51,4 +51,5 @@ class EnigmaTest < Minitest::Test
     i = 10
     assert_equal 31, e.final_rotations(k, o, i)[:final_a]
   end
+
 end
