@@ -86,6 +86,64 @@ class Enigma
       :final_d => ((char_index - (key.rotation_d + offset.offset_rotation_d)) % 39)
     }
   end
+
+
+  def find_key_rotations(encrypted_msg, date = Date.today)
+    offset = Offset.new(date)
+    msg = encrypted_msg.chars.last(4)
+    mapped = msg.map.with_index do |encrypted_char, index|
+      encrypted_char_index = @character_map.rindex(encrypted_char)
+      if index == 0
+        key_rotation_a = (@character_map.rindex("n") - encrypted_char_index - offset.offset_rotation_a)
+      elsif index == 1
+        key_rotation_b = -(@character_map.rindex("d")) + offset.offset_rotation_b - encrypted_char_index
+        key_rotation_b % 39
+      elsif index == 2
+        key_rotation_c = -(@character_map.rindex(".")) + offset.offset_rotation_c - encrypted_char_index
+        key_rotation_c % 39
+      else
+        key_rotation_d = -(@character_map.rindex(".")) + offset.offset_rotation_d - encrypted_char_index
+        key_rotation_d % 39
+      end
+    end
+    mapped
+  end
+
+
+  # def find_key_rotations(encrypted_msg, date = Date.today)
+  #   offset = Offset.new(date)
+  #   msg = encrypted_msg.chars.last(4)
+  #   binding.pryx
+  #   mapped = msg.map.with_index do |encrypted_char, index|
+  #     encrypted_char_index = @character_map.rindex(encrypted_char)
+  #     if index == 0
+  #       key_rotation_a = -(@character_map.rindex("n")) + offset.offset_rotation_a - encrypted_char_index
+  #       key_rotation_a % 39
+  #     elsif index == 1
+  #       key_rotation_b = -(@character_map.rindex("d")) + offset.offset_rotation_b - encrypted_char_index
+  #       key_rotation_b % 39
+  #     elsif index == 2
+  #       key_rotation_c = -(@character_map.rindex(".")) + offset.offset_rotation_c - encrypted_char_index
+  #       key_rotation_c % 39
+  #     else
+  #       key_rotation_d = -(@character_map.rindex(".")) + offset.offset_rotation_d - encrypted_char_index
+  #       key_rotation_d % 39
+  #     end
+  #   end
+  #   mapped
+  # end
+
+
+  def crack_message(msg, date)
+    encrypt_known
+    key = find_key
+    decrypt(msg, key, date)
+  end
+
+  def encrypt_known
+    known = "..end.."
+    encrypt(known, "12345")
+  end
 end
 
 # CRACK
