@@ -2,9 +2,7 @@ require 'pry'
 require 'date'
 
 class Enigma
-
-  attr_reader :character_map
-
+    attr_reader :character_map
   def initialize
     @character_map = ("a".."z").to_a + ("0".."9").to_a + ([" ", ",", "."])
   end
