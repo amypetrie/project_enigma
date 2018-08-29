@@ -12,7 +12,7 @@ k = "12345"
 d = Date.today
 o = Offset.new(d)
 
-encrypted_text = e.encrypt(incoming_text.strip, k)
+encrypted_text = e.encrypt(incoming_text.downcase.strip, k)
 writer_file = File.open(ARGV[1], "w")
 writer_file.write(encrypted_text)
 writer_file.close
