@@ -113,62 +113,12 @@ class Enigma
     mapped
   end
 
-
-  # def find_key_rotations(encrypted_msg, date = Date.today)
-  #   offset = Offset.new(date)
-  #   msg = encrypted_msg.chars.last(4)
-  #   binding.pryx
-  #   mapped = msg.map.with_index do |encrypted_char, index|
-  #     encrypted_char_index = @character_map.rindex(encrypted_char)
-  #     if index == 0
-  #       key_rotation_a = -(@character_map.rindex("n")) + offset.offset_rotation_a - encrypted_char_index
-  #       key_rotation_a % 39
-  #     elsif index == 1
-  #       key_rotation_b = -(@character_map.rindex("d")) + offset.offset_rotation_b - encrypted_char_index
-  #       key_rotation_b % 39
-  #     elsif index == 2
-  #       key_rotation_c = -(@character_map.rindex(".")) + offset.offset_rotation_c - encrypted_char_index
-  #       key_rotation_c % 39
-  #     else
-  #       key_rotation_d = -(@character_map.rindex(".")) + offset.offset_rotation_d - encrypted_char_index
-  #       key_rotation_d % 39
-  #     end
-  #   end
-  #   mapped
-  # end
-
+  def find_key
+  end
 
   def crack_message(msg, date)
-    encrypt_known
     key = find_key
     decrypt(msg, key, date)
   end
 
-  def encrypt_known
-    known = "..end.."
-    encrypt(known, "12345")
-  end
 end
-
-# CRACK
-# def find_key(encrypted_msg, date = Date.today)
-#   offset = Offset.new(date)
-#   message = encrypted_msg.chars
-#   loop do
-#   break if message.length == 0
-#     four_letter_msg = message.first(4)
-#     @encrypted << four_letter_msg.map do |char|
-#       index_integer = @character_map.rindex(char)
-#       if four_letter_msg.rindex(char) == 0
-#         char = @character_map[(index_integer.to_i + final_rotation_a(key, offset)) % 39]
-#       elsif four_letter_msg.rindex(char) == 1
-#         char = @character_map[(index_integer + final_rotation_b(key, offset)) % 39]
-#       elsif four_letter_msg.rindex(char) == 2
-#         char = @character_map[(index_integer + final_rotation_c(key, offset)) % 39]
-#       else
-#         char = @character_map[(index_integer + final_rotation_d(key, offset)) % 39]
-#       end
-#     end
-#     message = message.drop(4)
-#   end
-# end
