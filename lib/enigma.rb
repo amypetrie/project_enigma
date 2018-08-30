@@ -86,4 +86,38 @@ class Enigma
       :final_d => ((char_index - (key.rotation_d + offset.offset_rotation_d)) % 39)
     }
   end
+
+  def find_key_rotations(encrypted_msg, date = Date.today)
+    offset = Offset.new(date)
+    known = "..end..".chars
+    last_numbers = encrypted_msg.length % 4
+     start_index = -(last_numbers + 4)
+     msg = encrypted_msg.chars.slice(start_index, 4)
+     mapped = msg.map.with_index do |encrypted_char, index|
+       encrypted_char_index = @character_map.rindex(encrypted_char)
+       if index == 0
+         key_rotation_a = encrypted_char_index - @character_map.rindex(known[start_index]) - offset.offset_rotation_a
+         key_rotation_a % 39
+       elsif index == 1
+         key_rotation_b = encrypted_char_index - @character_map.rindex(known[start_index + 1]) - offset.offset_rotation_b
+         key_rotation_b % 39
+       elsif index == 2
+         key_rotation_c = encrypted_char_index - @character_map.rindex(known[start_index + 2]) - offset.offset_rotation_c
+         key_rotation_c % 39
+       elsif index == 3
+         key_rotation_d = encrypted_char_index - @character_map.rindex(known[start_index + 3]) - offset.offset_rotation_d
+         key_rotation_d % 39
+
+       end
+      end
+     mapped
+  end
+
+   def find_key
+   end
+
+   def crack_message(msg, date)
+     key = find_key
+     decrypt(msg, key, date)
+   end
 end
