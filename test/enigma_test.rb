@@ -40,8 +40,8 @@ class EnigmaTest < Minitest::Test
 
   def test_decryption_works
     e = Enigma.new
-    encrypted = "afmhe.ovy"
-    assert_equal "sup world", e.decrypt(encrypted, "12345")
+    encrypted = "afmhuxbxyx9"
+    assert_equal "sup ..end..", e.decrypt(encrypted, "12345")
   end
 
   def test_final_rotations
@@ -50,6 +50,13 @@ class EnigmaTest < Minitest::Test
     o = Offset.new
     i = 10
     assert_equal 31, e.final_rotations(k, o, i)[:final_a]
+  end
+
+  def test_find_key_rotations
+    skip
+    e = Enigma.new
+    msg = "afmhuxbxyx9"
+    assert_equal [12, 23, 34, 45], e.find_key_rotations(msg)
   end
 
 end
