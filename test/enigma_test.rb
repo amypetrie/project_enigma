@@ -52,6 +52,15 @@ class EnigmaTest < Minitest::Test
     assert_equal 31, e.final_rotations(k, o, i)[:final_a]
   end
 
+  def test_find_key_rotations
+    e = Enigma.new
+    msg = "afmhuxbxyx9"
+    assert_equal [12, 23, 34, 45], e.find_key_rotations(msg)
+  end
+
+end
+
+
   # def test_crack_message
   #   e = Enigma.new
   #   msg = "afmhuxbxyx9"
@@ -69,13 +78,3 @@ class EnigmaTest < Minitest::Test
   #   msg = "afmhuxbxyx9"
   #   assert_equal "12345", e.find_key(msg)
   # end
-
-  def test_find_key_rotations
-    e = Enigma.new
-    msg = "afmhuxbxyx9"
-    assert_equal 12, e.find_key_rotations(msg)
-  end
-
-
-
-end
